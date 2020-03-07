@@ -1,7 +1,7 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 
-const run = () => {
+const run = async () => {
   try {
     const token = core.getInput("repo-token");
     const octokit = new github.GitHub(token);
