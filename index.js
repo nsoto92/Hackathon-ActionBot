@@ -23,20 +23,17 @@ const run = async () => {
     const reviewers = data[0].requested_reviewers;
 
     const promises = reviewers.map(reviewer => {
-      return new Promise((resolve, reject) => {
-        try {
-          web.chat.postMessage({
-            text: `Hey ${reviewer.login}, check ${url}`,
-            channel: channel_name
-          })
-          resolve()
-        } catch {
-          reject()
-        }
+      return web.chat.postMessage({
+        text: `Hey ${reviewer.login}, check ${url}`,
+        channel: channel_name
       })
     })
 
-    Promise.all(promises)
+    Promise.all(promises).then(resp => {
+      console.log("RESP", resp)
+    }).then(error => {
+      console.log("error", error)
+    })
 
     console.log(data);
   } catch (error) {
