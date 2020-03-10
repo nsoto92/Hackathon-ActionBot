@@ -31,7 +31,7 @@ const run = async () => {
 
     Promise.all(promises).then(resp => {
       console.log("RESP", resp)
-    }).then(error => {
+    }).catch(error => {
       console.log("error", error)
     })
 
