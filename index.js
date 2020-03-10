@@ -5,7 +5,7 @@ const run = async () => {
   try {
     const token = core.getInput("repo-token");
     const octokit = new github.GitHub(token);
-    const { data: reviewers } = await octokit.pulls.list({
+    const { data } = await octokit.pulls.list({
       repo: github.context.repo.repo,
       owner: github.context.repo.owner
     });
@@ -13,7 +13,7 @@ const run = async () => {
     // login from that object
     // loop through that array to get everyones login
     // reviewers.url is link to pull request
-    console.log(reviewers[0].requested_reviewers);
+    console.log(data);
   } catch (error) {
     core.setFailed(error.message);
   }
