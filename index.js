@@ -24,8 +24,8 @@ const run = async () => {
 
     const promises = reviewers.map(reviewer => {
       return web.chat.postMessage({
-        text: `Hey ${reviewer.login}, check ${url}`,
-        channel: 'team_hackathon'
+        text: `Hey ${reviewer.login}! Check this ${url}`,
+        channel: channel_name
       })
     })
 
