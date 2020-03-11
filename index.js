@@ -4,11 +4,15 @@ const { WebClient } = require("@slack/web-api");
 
 const run = async () => {
   try {
+    const active = core.getInput("active");
+    if (!active) return;
+
     const token = core.getInput("repo-token");
     const octokit = new github.GitHub(token);
 
-    const slack_token = core.getInput("slackAuth");
+    const slack_token = core.getInput("slack-auth");
     const web = new WebClient(slack_token);
+
     const channel_name = core.getInput("channel");
 
     const { data } = await octokit.pulls.list({
@@ -26,14 +30,12 @@ const run = async () => {
       return web.chat.postMessage({
         text: `Hey ${reviewer.login}! Check this ${url}`,
         channel: channel_name
-      })
-    })
+      });
+    });
 
-    Promise.all(promises).then(resp => {
-      console.log("RESP", resp)
-    }).catch(error => {
-      console.log("error", error)
-    })
+    Promise.all(promises).catch(error => {
+      console.log("error", error);
+    });
 
     console.log(data);
   } catch (error) {

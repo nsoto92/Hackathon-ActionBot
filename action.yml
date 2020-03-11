@@ -1,14 +1,18 @@
 name: "github pull request reminder"
 
 inputs:
+  active:
+    description: Determines whether the action will run.
+    required: false
+    default: true
   channel:
     description: The channel you want messages posted to
-    required: true
+    required: false
     default: \#general
-  slackAuth:
+  slack-auth:
     description: The OAuth token of the slack bot, stored as repo secret
     required: true
-    default: "you didn't supply a token "
+    default: "you didn't supply a token"
   repo-token:
     description: this is an authentication token
     required: true
@@ -16,7 +20,4 @@ inputs:
 
 runs:
   using: "node12"
-  main: "index.js"
-# Basic version commented on GH
-# Advanced option to point to slack
-
+  main: "dist/index.js"
