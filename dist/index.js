@@ -22457,14 +22457,13 @@ const run = async () => {
 
     data.forEach(pr => {
       pr.requested_reviewers.map(reviewer => {
-        console.log("HTMLURL", pr);
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
             login: reviewer.login,
-            url: [reviewer.html_url]
+            url: [pr.html_url]
           };
         } else {
-          reviewers[reviewer.login].url.push(reviewer.html_url);
+          reviewers[reviewer.login].url.push(pr.html_url);
         }
       });
     });
