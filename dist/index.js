@@ -22473,7 +22473,7 @@ const run = async () => {
 
     const promises = Object.values(reviewers).map(reviewer => {
       return web.chat.postMessage({
-        text: `Hey ${reviewer.login}! Check these ${reviewer.url.split(",")}`,
+        text: `Hey ${reviewer.login}! Check these ${reviewer.url.join(", ")}`,
         channel: channel_name
       });
     });
