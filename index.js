@@ -28,18 +28,19 @@ const run = async () => {
     const reviewers = {};
 
     console.log("DATA", data);
-    data.map(pr =>
+    data.forEach(pr => {
+      console.log("PR", pr);
       pr.requested_reviewers.map(reviewer => {
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
             login: reviewer.login,
-            url: [reviewer.http_url]
+            url: [reviewer.html_url]
           };
         } else {
           reviewers[reviewer.login].url.push(reviewer.url);
         }
-      })
-    );
+      });
+    });
 
     console.log("FINAL", Object.values(reviewers));
     const promises = Object.values(reviewers).map(reviewer => {
