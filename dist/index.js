@@ -22457,7 +22457,7 @@ const run = async () => {
 
     data.forEach(pr => {
       pr.requested_reviewers.map(reviewer => {
-        console.log("HTMLURL", reviewer);
+        console.log("HTMLURL", pr);
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
             login: reviewer.login,
