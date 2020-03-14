@@ -26,6 +26,7 @@ const run = async () => {
 
     data.forEach(pr => {
       pr.requested_reviewers.map(reviewer => {
+        console.log("HTMLURL", reviewer);
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
             login: reviewer.login,
