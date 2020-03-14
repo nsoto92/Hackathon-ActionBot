@@ -22481,8 +22481,6 @@ const run = async () => {
     Promise.all(promises).catch(error => {
       console.log("error", error);
     });
-
-    console.log(data);
   } catch (error) {
     core.setFailed(error.message);
   }
