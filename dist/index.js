@@ -22442,6 +22442,7 @@ const run = async () => {
     const octokit = new github.GitHub(token);
 
     const slack_token = core.getInput("slack-auth");
+      console.log("SLACK TOKEN", slack_token);
     const web = new WebClient(slack_token);
 
     const channel_name = core.getInput("channel");
