@@ -22459,7 +22459,6 @@ const run = async () => {
     const reviewers = {};
 
     data.forEach(pr => {
-      console.log("PR", pr);
       pr.requested_reviewers.map(reviewer => {
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
@@ -22472,10 +22471,9 @@ const run = async () => {
       });
     });
 
-    console.log("FINAL", Object.values(reviewers));
     const promises = Object.values(reviewers).map(reviewer => {
       return web.chat.postMessage({
-        text: `Hey ${reviewer.login}! Check this ${url.split(",")}`,
+        text: `Hey ${reviewer.login}! Check these ${reviewer.url.split(",")}`,
         channel: channel_name
       });
     });
