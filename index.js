@@ -23,12 +23,22 @@ const run = async () => {
     // login from that object
     // loop through that array to get everyones login
     // reviewers.url is link to pull request
-    const url = data[0].html_url;
-    const reviewers = data[0].requested_reviewers;
+    const reviewers = {}
 
-    const promises = reviewers.map(reviewer => {
+    data.map(pr => pr.request_reviewers.map(reviewer => {
+      if (!reviewers[reviewer.login]) {
+        reviewers[reviewer.login] = {
+          login: reviewer.login,
+          url: [reviewer.http_url]
+        }
+      } else {
+        reviewers[reviewer.login].url.push(reviewer.url)
+      }
+    }))
+
+    const promises = Object.values(reviewers).map(reviewer => {
       return web.chat.postMessage({
-        text: `Hey ${reviewer.login}! Check this ${url}`,
+        text: `Hey ${reviewer.login}! Check this ${url.split(',')}`,
         channel: channel_name
       });
     });
