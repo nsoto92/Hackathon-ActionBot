@@ -29,7 +29,7 @@ const run = async () => {
 
     console.log("DATA", data);
     data.map(pr =>
-      pr.request_reviewers.map(reviewer => {
+      pr.requested_reviewers.map(reviewer => {
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
             login: reviewer.login,
