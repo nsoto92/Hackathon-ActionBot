@@ -7,11 +7,10 @@ const run = async () => {
     const active = core.getInput("active");
     if (!active) return;
 
-    const token = core.getInput("repo-token");
-    const octokit = new github.GitHub(token);
+    const repo_token = core.getInput("repo-token");
+    const octokit = new github.GitHub(repo_token);
 
     const slack_token = core.getInput("slack-auth");
-      console.log("SLACK TOKEN", slack_token);
     const web = new WebClient(slack_token);
 
     const channel_name = core.getInput("channel");
@@ -20,10 +19,7 @@ const run = async () => {
       repo: github.context.repo.repo,
       owner: github.context.repo.owner
     });
-    // reviwers[0].requested_reviewers reutrns array of objects of revieweres
-    // login from that object
-    // loop through that array to get everyones login
-    // reviewers.url is link to pull request
+
     if (!data) return;
 
     const reviewers = {};
@@ -36,7 +32,7 @@ const run = async () => {
             url: [reviewer.html_url]
           };
         } else {
-          reviewers[reviewer.login].url.push(reviewer.url);
+          reviewers[reviewer.login].url.push(reviewer.html_url);
         }
       });
     });
