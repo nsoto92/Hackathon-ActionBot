@@ -27,6 +27,7 @@ const run = async () => {
 
     const reviewers = {};
 
+    console.log("DATA", data);
     data.map(pr =>
       pr.request_reviewers.map(reviewer => {
         if (!reviewers[reviewer.login]) {
@@ -40,6 +41,7 @@ const run = async () => {
       })
     );
 
+    console.log("FINAL", Object.values(reviewers));
     const promises = Object.values(reviewers).map(reviewer => {
       return web.chat.postMessage({
         text: `Hey ${reviewer.login}! Check this ${url.split(",")}`,
