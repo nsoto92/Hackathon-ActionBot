@@ -27,7 +27,6 @@ const run = async () => {
 
     const reviewers = {};
 
-    console.log("DATA", data);
     data.forEach(pr => {
       console.log("PR", pr);
       pr.requested_reviewers.map(reviewer => {
