@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "node generate-docs.js"
+    "docs": "node generate-docs.js",
+    "build": "ncc build index.js --minify"
   },
   "repository": {
     "type": "git",
