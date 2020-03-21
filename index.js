@@ -39,7 +39,7 @@ const run = async () => {
 
     const promises = Object.values(reviewers).map(reviewer => {
       return web.chat.postMessage({
-        text: `Hey ${reviewer.login}! Check these ${reviewer.url.join(", ")}`,
+        text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, ${reviewer.url.join(", ")}`,
         channel: channel_name
       });
     });

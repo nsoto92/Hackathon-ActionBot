@@ -51,6 +51,15 @@ jobs:
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (CONTRIBUTORS) -->
+| **Commits** | **Contributor** |  
+| --- | --- |  
+| 30 | [Balintataw](https://github.com/Balintataw) |  
+| 8  | [KylerWilson01](https://github.com/KylerWilson01) |  
+| 2  | [nsoto92](https://github.com/nsoto92) |  
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
