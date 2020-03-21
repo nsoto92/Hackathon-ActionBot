@@ -44,7 +44,6 @@ const run = async () => {
       return web.chat.postMessage({
         type: 'mrkdwn',
         text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, ${url_text}`,
-          // text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, \n - ${reviewer.url.join(", \n - ")}`,
         channel: channel_name
       });
     });
