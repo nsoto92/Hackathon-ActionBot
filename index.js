@@ -25,12 +25,12 @@ const run = async () => {
     const reviewers = {};
 
     data.forEach(pr => {
-      console.log("PR", pr);
       pr.requested_reviewers.map(reviewer => {
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
             login: reviewer.login,
-            urls: [pr.html_url]
+            urls: [pr.html_url],
+            repo: pr.repo.html_url
           };
         } else {
           reviewers[reviewer.login].urls.push(pr.html_url);
@@ -44,7 +44,7 @@ const run = async () => {
       }).join();
       return web.chat.postMessage({
         type: 'mrkdwn',
-        text: `Hey ${reviewer.login}! Your review has been requested for repo ${github.context.repo.repo} on these pull requests, ${url_text}`,
+        text: `Hey ${reviewer.login}! Your review has been requested for repo <${reviewer.repo}| ${github.context.repo.repo}> on these pull requests, ${url_text}`,
         channel: channel_name
       });
     });
