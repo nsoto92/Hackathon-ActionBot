@@ -39,11 +39,11 @@ const run = async () => {
 
     const promises = Object.values(reviewers).map(reviewer => {
       const url_text = reviewer.urls.map((url, idx) => {
-        return `\n - PR: <${url}| ${url.split('/').splice(-2, 2).join(' ')}>`
+        return `\n - PR ${+idx + 1}: <${url}| ${url.split('/').splice(-2, 2).join(' ')}>`
       }).join();
       return web.chat.postMessage({
         type: 'mrkdwn',
-        text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, ${url_text}`,
+        text: `Hey ${reviewer.login}! Your review has been requested for repo ${github.context.repo.repo} on these pull requests, ${url_text}`,
         channel: channel_name
       });
     });
