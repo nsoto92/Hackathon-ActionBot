@@ -30,7 +30,7 @@ const run = async () => {
           reviewers[reviewer.login] = {
             login: reviewer.login,
             urls: [pr.html_url],
-            repo: pr.repo.html_url
+            repo: pr.head.repo.html_url
           };
         } else {
           reviewers[reviewer.login].urls.push(pr.html_url);
