@@ -42,11 +42,9 @@ const run = async () => {
         return `\n - PR: <${url}| ${url.split('/').splice(-2, 2).join(' ')}>`
       }).join();
       return web.chat.postMessage({
-        text: {
-          type: 'mrkdwn',
-          text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, ${url_text}`,
+        type: 'mrkdwn',
+        text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, ${url_text}`,
           // text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, \n - ${reviewer.url.join(", \n - ")}`,
-        },
         channel: channel_name
       });
     });
