@@ -29,17 +29,24 @@ const run = async () => {
         if (!reviewers[reviewer.login]) {
           reviewers[reviewer.login] = {
             login: reviewer.login,
-            url: [pr.html_url]
+            urls: [pr.html_url]
           };
         } else {
-          reviewers[reviewer.login].url.push(pr.html_url);
+          reviewers[reviewer.login].urls.push(pr.html_url);
         }
       });
     });
 
     const promises = Object.values(reviewers).map(reviewer => {
+      const url_text = reviewer.urls.map((url, idx) => {
+        return `\n - PR: <${url}| ${url.split('/').splice(-2, 2).join(' ')}>`
+      }).join();
       return web.chat.postMessage({
-        text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, ${reviewer.url.join(", ")}`,
+        text: {
+          type: 'mrkdwn',
+          text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, ${url_text}`,
+          // text: `Hey ${reviewer.login}! Your review has been requested on these pull requests, \n - ${reviewer.url.join(", \n - ")}`,
+        },
         channel: channel_name
       });
     });
